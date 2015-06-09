@@ -1,6 +1,13 @@
 ---
 # tasks file for sshd role
 
+- name: Install SSHD
+  yum: >
+    name=openssh-server
+    state=latest
+  tags:
+    - role-sshd-install
+
 - name: Copy sshd config
   template: >
     src=etc/ssh/sshd_config.j2
