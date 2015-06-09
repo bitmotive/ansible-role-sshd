@@ -31,7 +31,7 @@
     group={{ item.username }}
     mode=0600
   with_items: role_sshd_users
-  when: "{{ item.ssh_folder }}"
+  when: item.ssh_folder
   tags:
     - role-sshd-users-config
 
@@ -41,7 +41,7 @@
     owner={{ item.username }}
     group={{ item.username }}
     mode=0644
-  when: "{{ item.authorized_keys }}"
+  when: item.authorized_keys
   with_items: role_sshd_users
   tags: 
     - role-sshd-users-config

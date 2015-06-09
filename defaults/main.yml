@@ -19,10 +19,11 @@ role_sshd_ClientAliveInterval: "1800"
 role_sshd_LogLevel: "INFO"
 role_sshd_AllowGroups: "sshusers"
 
-# Provide a list of hash items representing users
-role_sshd_users: 
-- {
-    username: 'john',
-    ssh_folder: false,
-    authorized_keys: false 
-}
+# Override with users who should have access to SSH
+role_sshd_users: []
+# role_sshd_users:
+# - {
+#     username: 'john',
+#     ssh_folder: false, # If set to true, supply ssh files in files/home/{{ username }}/.ssh
+#     authorized_keys: false # If set to true, supply files/home/{{ username }}/.ssh/authorized_keys
+# }
