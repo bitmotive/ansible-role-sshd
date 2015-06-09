@@ -1,0 +1,21 @@
+# Logging Configuration
+SyslogFacility AUTHPRIV
+
+# SSH Hardening
+Protocol 2 
+UsePAM {{ role_sshd_UsePAM }}
+ChallengeResponseAuthentication {{ role_sshd_ChallengeResponseAuthentication }}
+GSSAPIAuthentication {{ role_sshd_GSSAPIAuthentication }}
+GSSAPICleanupCredentials {{ role_sshd_GSSAPICleanupCredentials }}
+LoginGraceTime {{ role_sshd_LoginGraceTime }}
+PermitRootLogin {{ role_sshd_PermitRootLogin }}
+PermitEmptyPasswords {{ role_sshd_PermitEmptyPasswords }}
+PasswordAuthentication {{ role_sshd_PasswordAuthentication }}
+IgnoreRhosts {{ role_sshd_IgnoreRhosts }}
+HostbasedAuthentication {{ role_sshd_HostbasedAuthentication }}
+PermitTunnel {{ role_sshd_PermitTunnel }}
+AllowTcpForwarding {{ role_sshd_AllowTcpForwarding }}
+X11Forwarding {{ role_sshd_X11Forwarding }}
+ClientAliveInterval {{ role_sshd_ClientAliveInterval }}
+LogLevel {{ role_sshd_LogLevel }}
+AllowGroups {{ role_sshd_AllowGroups }}

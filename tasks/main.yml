@@ -1,0 +1,47 @@
+---
+# tasks file for sshd role
+
+- name: Copy sshd config
+  template: >
+    src=etc/ssh/sshd_config.j2
+    dest=/etc/ssh/sshd_config
+    owner=root
+    group=root
+    mode=0644
+  notify: restart sshd
+  tags:
+    - role-sshd-config
+
+- name: Create ssh directory for users
+  file: >
+    path=/home/{{ item.username }}/.ssh
+    state=directory
+    owner={{ item.username }}
+    group={{ item.username }}
+    mode=0700
+  with_items: role_sshd_users
+  tags:
+    - role-sshd-users-config
+
+- name: Copy the users custom ssh files
+  copy: >
+    src=home/{{ item.username }}/.ssh/
+    dest=/home/{{ item.username }}/.ssh
+    owner={{ item.username }}
+    group={{ item.username }}
+    mode=0600
+  with_items: role_sshd_users
+  when: "{{ item.ssh_folder }}"
+  tags:
+    - role-sshd-users-config
+
+- name: Make sure the authorized_keys file is set to 0644
+  file: >
+    path=/home/{{ item.username }}/.ssh/authorized_keys
+    owner={{ item.username }}
+    group={{ item.username }}
+    mode=0644
+  when: "{{ item.authorized_keys }}"
+  with_items: role_sshd_users
+  tags: 
+    - role-sshd-users-config

@@ -1,0 +1,28 @@
+---
+# defaults file for sshd role
+
+# All variables substitute for values in /etc/ssh/sshd_config
+role_sshd_UsePAM: "yes"
+role_sshd_ChallengeResponseAuthentication: "no"
+role_sshd_GSSAPIAuthentication: "no"
+role_sshd_GSSAPICleanupCredentials: "no"
+role_sshd_LoginGraceTime: "1m"
+role_sshd_PermitRootLogin: "no"
+role_sshd_PermitEmptyPasswords: "no"
+role_sshd_PasswordAuthentication: "no"
+role_sshd_IgnoreRhosts: "yes"
+role_sshd_HostbasedAuthentication: "no"
+role_sshd_PermitTunnel: "no"
+role_sshd_AllowTcpForwarding: "no"
+role_sshd_X11Forwarding: "no"
+role_sshd_ClientAliveInterval: "1800"
+role_sshd_LogLevel: "INFO"
+role_sshd_AllowGroups: "sshusers"
+
+# Provide a list of hash items representing users
+role_sshd_users: 
+- {
+    username: 'john',
+    ssh_folder: false,
+    authorized_keys: false 
+}
