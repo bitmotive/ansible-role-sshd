@@ -8,6 +8,15 @@
   tags:
     - role-sshd-install
 
+# Add groups allowed to use SSH
+- name: Add group allowed to SSH
+  group: >
+    name={{ role_sshd_group }}
+    system=no
+    state=present
+  tags:
+    - role-sshd-group
+
 - name: Copy sshd config
   template: >
     src=etc/ssh/sshd_config.j2

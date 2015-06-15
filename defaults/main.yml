@@ -1,6 +1,9 @@
 ---
 # defaults file for sshd role
 
+# Groups allowed to SSH
+role_sshd_group: "sshusers"
+
 # All variables substitute for values in /etc/ssh/sshd_config
 role_sshd_UsePAM: "yes"
 role_sshd_ChallengeResponseAuthentication: "no"
@@ -17,7 +20,7 @@ role_sshd_AllowTcpForwarding: "no"
 role_sshd_X11Forwarding: "no"
 role_sshd_ClientAliveInterval: "1800"
 role_sshd_LogLevel: "INFO"
-role_sshd_AllowGroups: "sshusers"
+role_sshd_AllowGroups: "{{ role_sshd_group }}"
 
 # Override with users who should have access to SSH
 role_sshd_users: []
